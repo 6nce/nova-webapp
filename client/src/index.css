@@ -21,9 +21,14 @@
     transition-colors;
 }
 
+.button-sideNav {
+    @apply bg-novaAurora text-novaNavy font-bold py-2 rounded-md hover:bg-novaNavy hover:text-novaAurora
+    transition-colors;
+}
+
 
 body {
-    font-family: "Oxanium", sans-serif;
+    font-family: "Asap", sans-serif;
 
-    @apply text-novaCream bg-novaNavy;
+    @apply text-novaNavy bg-novaCream;
 }

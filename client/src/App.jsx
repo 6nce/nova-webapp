@@ -1,19 +1,16 @@
 import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import ApplicationsPage from "./pages/ApplicationsPage.jsx";
 import TasksPage from "./pages/TasksPage.jsx";
+import HomePage from "./pages/HomePage.jsx";
 
 export default function App() {
     return (
-        <div style={{ maxWidth: 900, margin: "0 auto", padding: 16 }}>
-            <header style={{ display: "flex", gap: 12, marginBottom: 16 }}>
-                <NavLink to="/applications">Applications</NavLink>
-                <NavLink to="/tasks">Tasks</NavLink>
-            </header>
-
+        <div>
             <Routes>
-                <Route path="/" element={<Navigate to="/applications" replace />} />
-                <Route path="/applications" element={<ApplicationsPage />} />
-                <Route path="/tasks" element={<TasksPage />} />
+                <Route path="/" element={<Navigate to="/home" replace/>}/>
+                <Route path="/applications" element={<ApplicationsPage/>}/>
+                <Route path="/tasks" element={<TasksPage/>}/>
+                <Route path="/home" element={<HomePage/>}/>
             </Routes>
         </div>
     );

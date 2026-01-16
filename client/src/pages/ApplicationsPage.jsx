@@ -66,11 +66,8 @@ export default function ApplicationsPage() {
 
     return (
         view === "form" ? (
-            <div>
-                <h3 className="text-2xl font-bold text-novaNavy">
-                    Application for {formData.company}
-                </h3>
-                <form onSubmit={handleSubmit} className="form-base">
+            <div className="flex justify-center items-center align-middle w-full">
+                <form onSubmit={handleSubmit} className="flex flex-col gap-4 max-w-md bg-gray-50 p-6 rounded-lg shadow w-full">
                     <label className="label-base">
                         Company Name:
                         <input

@@ -10,6 +10,9 @@ export default {
         novaCream: "#F3EFE8",
         novaAurora: "#5FD3A6",
       },
+      fontFamily: {
+        asap: ["Asap","system-ui", "sans-serif"],
+      }
     }
   },
   plugins: [],
