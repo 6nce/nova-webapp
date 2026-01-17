@@ -12,6 +12,10 @@ export default {
       },
       fontFamily: {
         asap: ["Asap","system-ui", "sans-serif"],
+      },
+      letterSpacing: {
+        superwide: "0.35em",
+        ultrawide: "0.5em",
       }
     }
   },

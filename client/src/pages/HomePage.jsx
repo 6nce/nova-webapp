@@ -1,26 +1,44 @@
-import {useState} from "react";
+import {useState, useEffect, act} from "react";
 import SideNav from "../components/SideNav";
 import ApplicationsPage from "./ApplicationsPage.jsx";
+import randomIndex, {motivationalHeaderQuotes} from "../data/FlavorText.jsx";
+import LandingPage from "./LandingPage.jsx";
 
 
 export default function HomePage() {
-    const [activeView, setActiveView] = useState("home");
+    const [activeView, setActiveView] = useState("profile");
+    const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
 
     const onNavigate = (e) => {
         setActiveView(e);
     }
 
+    const handleQuote = () => {
+        setActiveQuoteIndex(randomIndex(motivationalHeaderQuotes));
+    }
+
+    useEffect(() => {
+        handleQuote();
+    }, []);
+
+
     return (
         <div className="flex w-full h-screen">
-            <aside className="w-96 border-r border-r-novaNavy pl-7 pr-7" >
-                <SideNav activeView={activeView} onNavigate={onNavigate} />
+            <aside>
+                <div className="w-96 h-[94vh] border-r-2 border-r-novaNavy/40 pl-7 pr-7">
+                    <SideNav activeView={activeView} onNavigate={onNavigate} />
+                </div>
             </aside>
             <main className="flex-1 p-6">
-                <div className="w-full bg-blue ml-5 mt-14">
-                    <h2 className="font-bold text-xl">Applications</h2>
+                <div className="flex col justify-between bg-blue ml-5 mt-16">
+                    <h2 className="font-bold text-xl capitalize">{activeView}</h2>
+                    <h2 className=" align-middle content-end text-sm tracking-widest italic">
+                        {activeView !== "profile" && motivationalHeaderQuotes[activeQuoteIndex]}
+                    </h2>
                 </div>
                 <div className="flex items-center justify-center h-5/6 bg-novaNavy mt-5 rounded-3xl ">
                     {activeView === "applications" && <ApplicationsPage/>}
+                    {activeView === "profile" && <LandingPage quoteIndex={activeQuoteIndex} />}
                 </div>
             </main>
         </div>
