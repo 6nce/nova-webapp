@@ -12,12 +12,22 @@ export default function LandingPage({quoteIndex}) {
     useEffect(() => {
         const randomAvatar = avatarUrls[randomIndex(avatarUrls)];
         setAvatarURL(randomAvatar);
-        const user = userNameTestRandomizer[randomAvatar];
+
+        const cleanAvatar = randomAvatar.split("?")[0];
+        const user = userNameTestRandomizer[cleanAvatar];
+
+        if (!user) {
+            console.warn("No user mapping for avatar:", randomAvatar);
+            setActiveUserName("UnknownUser");
+            setActiveFirstName("Guest");
+            setMounted(true);
+            return;
+        }
+
         setActiveUserName(user.testName);
         setActiveFirstName(user.firstName);
         setMounted(true);
     }, []);
-
 
     return (
         <div className="flex-col w-full h-full ">

@@ -293,4 +293,10 @@ export const userNameTestRandomizer = {
     "/src/assets/placeholderImages/exampleUser.png": { firstName: "Phoebe", testName: "SmellyCatQueen" }
 };
 
-export default function randomIndex(e) {return Math.floor(Math.random() * e.length)};
+export default function randomIndex(arr) {
+    if (!arr || typeof arr.length !== "number") {
+        console.error("randomIndex expected an array-like value, got:", arr);
+        return 0;
+    }
+    return Math.floor(Math.random() * arr.length);
+}
