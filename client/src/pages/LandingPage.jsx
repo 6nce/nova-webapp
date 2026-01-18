@@ -1,31 +1,18 @@
 import {useEffect, useState} from 'react';
 import randomIndex, {motivationalHeaderQuotes, userNameTestRandomizer, userDashboardWelcomeMessages, userDashboardHypeText, userDashboardPositionExamples, userDashboardDescriptorText} from "../data/FlavorText.jsx";
 import {avatarUrls} from "../components/userRandomizerForTest.jsx";
+import {useAuth} from "../context/AuthContext.jsx";
+import {testUsers} from "../data/TempTestingData.jsx";
 
 
 export default function LandingPage({quoteIndex}) {
-    const [avatarURL, setAvatarURL] = useState("");
-    const [activeUserFirstName, setActiveFirstName] = useState("");
-    const [activeUserName, setActiveUserName] = useState("");
     const [mounted, setMounted] = useState(false);
 
+    const { userEmail } = useAuth();
+    const activeUser = userEmail ? testUsers[userEmail] : null;
+    const avatarURL = activeUser?.avatarPath ?? null;
+
     useEffect(() => {
-        const randomAvatar = avatarUrls[randomIndex(avatarUrls)];
-        setAvatarURL(randomAvatar);
-
-        const cleanAvatar = randomAvatar.split("?")[0];
-        const user = userNameTestRandomizer[cleanAvatar];
-
-        if (!user) {
-            console.warn("No user mapping for avatar:", randomAvatar);
-            setActiveUserName("UnknownUser");
-            setActiveFirstName("Guest");
-            setMounted(true);
-            return;
-        }
-
-        setActiveUserName(user.testName);
-        setActiveFirstName(user.firstName);
         setMounted(true);
     }, []);
 
@@ -47,7 +34,7 @@ export default function LandingPage({quoteIndex}) {
                     <div className="w-full h-1/3">
                         <p
                             className={[
-                                "pl-2 flex items-end h-full font-semibold text-4xl text-novaSand",
+                                "pl-2 flex items-end h-full font-semibold text-4xl text-novaAurora",
                                 "transition-all duration-1000 ease-in-out delay-150",
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                             ].join(" ")}
@@ -63,7 +50,7 @@ export default function LandingPage({quoteIndex}) {
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                             ].join(" ")}
                         >
-                            {activeUserFirstName}
+                            {activeUser?.firstName ?? "Loading..."}
                         </p>
                     </div>
                     <div className="w-full h-1/3">
@@ -74,20 +61,22 @@ export default function LandingPage({quoteIndex}) {
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                             ].join(" ")}
                         >
-                            ( {activeUserName} )
+                            {activeUser?.testName ?? "Loading..."}
                         </p>
                     </div>
                 </div>
                 <div className="flex items-center justify-end w-1/2 h-full">
-                    <img
-                        src={avatarURL}
-                        alt="Random profile"
-                        className={[
-                            "aspect-square h-5/6 rounded-full object-cover border-8 border-novaAurora",
-                            "transition-all duration-700 ease-out delay-150",
-                            mounted ? "opacity-100 scale-100" : "opacity-0 scale-95"
-                        ].join(" ")}
-                    />
+                    {avatarURL && (
+                        <img
+                            src={avatarURL}
+                            alt="Profile"
+                            className={[
+                                "aspect-square h-5/6 rounded-full object-cover border-8 border-novaAurora",
+                                "transition-all duration-700 ease-out delay-150",
+                                mounted ? "opacity-100 scale-100" : "opacity-0 scale-95"
+                            ].join(" ")}
+                        />
+                    )}
                 </div>
             </div>
             <div className="flex w-full h-36 justify-center items-center w-full">

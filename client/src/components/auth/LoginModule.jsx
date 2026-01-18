@@ -1,16 +1,33 @@
 import {useState} from "react";
 import {testUsers} from "../../data/TempTestingData.jsx";
+import { useNavigate } from "react-router-dom";
+import {useAuth} from "../../context/AuthContext.jsx";
+
 
 export default function LoginModule() {
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
+    const {login} = useAuth()
 
+
+    const navigate = useNavigate();
+
+    const handleSubmit =(e) => {
+        e.preventDefault();
+        const result = login(email, password);
+
+        if(result.ok) {navigate("/home")
+        } else {
+            console.log(result.message)
+        }
+
+    }
 
 
     return (
         <div className="flex-col h-full w-full max-w-lg flex justify-center items-center bg-novaNavy rounded-3xl px-6 py-3">
-            <form className="flex flex-col gap-2.5 max-w-sm p-6 rounded-lg w-full">
-                <h2 className="text-novaCream font-light text-xl mb-2 ">Welcome Back</h2>
+            <form onSubmit={handleSubmit} className="flex flex-col gap-2.5 max-w-sm p-6 rounded-lg w-full">
+                <h2 className="text-white font-light text-xl mb-2 ">Welcome Back</h2>
                 <input
                     name="username"
                     value={email}
@@ -41,7 +58,7 @@ export default function LoginModule() {
                 className="flex flex-col h-3/4 w-5/6 justify-center items-center border-t-2 border-b-novaCream mb-5 gap-4 pt-4">
                 <div className="pt-1">
                     <p className="flex justify-center text-xs font-medium text-novaCream pb-1">
-                        Want to sign in a different way?
+                        Prefer signing in a different way?
                     </p>
                 </div>
                 <button className="flex justify-center items-center bg-white rounded py-2 font-medium max-w-sm w-11/12">
