@@ -9,7 +9,6 @@ export default function LoginPage() {
     //loginPage views: login, sign up, forget password
     const [activeView, setActiveView] = useState("login");
 
-
     return (
         activeView === "login" ? (
         <div className="flex w-screen h-screen justify-center items-center">

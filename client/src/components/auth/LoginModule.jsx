@@ -2,6 +2,7 @@ import {useState} from "react";
 import {testUsers} from "../../data/TempTestingData.jsx";
 import { useNavigate } from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
+import randomIndex from "../../data/FlavorText.jsx";
 
 
 export default function LoginModule() {
@@ -11,6 +12,14 @@ export default function LoginModule() {
 
 
     const navigate = useNavigate();
+
+
+    const setTestUser = () => {
+        const keys = Object.keys(testUsers);
+        const randomTestUser = keys[randomIndex(keys)]
+        setEmail(randomTestUser)
+        setPassword("password")
+    }
 
     const handleSubmit =(e) => {
         e.preventDefault();
@@ -70,6 +79,9 @@ export default function LoginModule() {
                 <button className="flex justify-center items-center text-white bg-black rounded py-2 font-medium max-w-sm w-11/12">
                     Apple SSO
                 </button>
+            </div>
+            <div>
+                <p className="text-novaAurora text-xs" onClick={setTestUser}> Click here to generate test login email</p>
             </div>
         </div>
     );
