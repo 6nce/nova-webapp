@@ -30,7 +30,7 @@ export default function LoginModule() {
                 <div>
                     <p className="flex justify-end text-xs font-medium text-novaAurora">forgot your password?</p>
                 </div>
-                <button className=" bg-novaAurora rounded-3xl py-2 font-medium">Sign In</button>
+                <button className=" bg-novaAurora rounded-3xl py-2 font-semibold text-novaNavy">Sign In</button>
                 <div className="pt-1">
                     <p className="flex justify-center text-xs font-medium text-novaCream">
                         First time? Get started by clicking here
