@@ -9,6 +9,7 @@ export default function HomePage() {
     const [activeView, setActiveView] = useState("profile");
     const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
 
+    //Takes arg from SideNav Function
     const onNavigate = (e) => {
         setActiveView(e);
     }

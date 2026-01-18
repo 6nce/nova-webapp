@@ -2,8 +2,9 @@ import { NavLink, Routes, Route, Navigate } from "react-router-dom";
 import ApplicationsPage from "./pages/ApplicationsPage.jsx";
 import TasksPage from "./pages/TasksPage.jsx";
 import HomePage from "./pages/HomePage.jsx";
+import LoginPage from "./pages/LoginPage.jsx";
 
-export default function App() {
+export default function () {
     return (
         <div>
             <Routes>
@@ -11,6 +12,7 @@ export default function App() {
                 <Route path="/applications" element={<ApplicationsPage/>}/>
                 <Route path="/tasks" element={<TasksPage/>}/>
                 <Route path="/home" element={<HomePage/>}/>
+                <Route path="/login" element={<LoginPage/>}/>
             </Routes>
         </div>
     );
