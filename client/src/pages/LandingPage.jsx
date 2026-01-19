@@ -61,7 +61,7 @@ export default function LandingPage({quoteIndex}) {
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                             ].join(" ")}
                         >
-                            {activeUser?.testName ?? "Loading..."}
+                            ( {activeUser?.testName ?? "Loading..."} )
                         </p>
                     </div>
                 </div>
@@ -71,15 +71,16 @@ export default function LandingPage({quoteIndex}) {
                             src={avatarURL}
                             alt="Profile"
                             className={[
-                                "aspect-square h-5/6 rounded-full object-cover border-8 border-novaAurora",
-                                "transition-all duration-700 ease-out delay-150",
+                                "aspect-square h-3/5 rounded-full object-cover border-8 border-novaAurora",
+                                "transition-all duration-700 ease-out delay-150 relative",
                                 mounted ? "opacity-100 scale-100" : "opacity-0 scale-95"
                             ].join(" ")}
                         />
                     )}
+
                 </div>
             </div>
-            <div className="flex w-full h-36 justify-center items-center w-full">
+            <div className="flex w-full h-36 justify-center items-center w-full pb-20 px-10">
                 <p
                     className={[
                         "flex text-novaCream items-center h-36 text-2xl font-extralight",
@@ -91,7 +92,7 @@ export default function LandingPage({quoteIndex}) {
                 </p>
                 <p
                     className={[
-                        "px-5 flex tracking-widest text-novaCream items-center h-36 text-5xl font-extrabold italic",
+                        "px-5 flex tracking-widest text-novaAurora items-center h-36 text-5xl font-semibold",
                         "transition-all duration-700 ease-in-out delay-300",
                         mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                     ].join(" ")}
@@ -100,7 +101,7 @@ export default function LandingPage({quoteIndex}) {
                 </p>
                 <p
                     className={[
-                        "flex text-novaCream items-center h-36 text-2xl font-extralight",
+                        "flex text-novaCream items-center h-36 text-2xl font-extralight ",
                         "transition-all duration-700 ease-in-out delay-500",
                         mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                     ].join(" ")}

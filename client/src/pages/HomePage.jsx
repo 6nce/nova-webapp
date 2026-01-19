@@ -8,6 +8,7 @@ import LandingPage from "./LandingPage.jsx";
 export default function HomePage() {
     const [activeView, setActiveView] = useState("profile");
     const [activeQuoteIndex, setActiveQuoteIndex] = useState(0);
+    const [apiStatus, setApiStatus] = useState("loading");
 
     //Takes arg from SideNav Function
     const onNavigate = (e) => {
@@ -20,6 +21,21 @@ export default function HomePage() {
 
     useEffect(() => {
         handleQuote();
+        const checkHealth = async () => {
+            try {
+                setApiStatus("loading");
+
+                const response = await fetch ("/api/health");
+                if (!response.ok) throw new Error(`HTTP status ${response.status}`);
+
+                setApiStatus("ok");
+            } catch (error) {
+                console.log("Health Check Failed: ", error);
+                setApiStatus("error");
+            }
+        };
+
+        checkHealth();
     }, []);
 
 
@@ -32,7 +48,7 @@ export default function HomePage() {
             </aside>
             <main className="flex-1 p-6">
                 <div className="flex col justify-between bg-blue ml-5 mt-16">
-                    <h2 className="font-bold text-xl capitalize">{activeView}</h2>
+                    <h2 className="font-bold text-xl capitalize">{activeView} : API Status: {apiStatus}</h2>
                     <h2 className=" align-middle content-end text-sm tracking-widest italic">
                         {activeView !== "profile" && motivationalHeaderQuotes[activeQuoteIndex]}
                     </h2>

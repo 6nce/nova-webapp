@@ -25,7 +25,7 @@ export default function LoginPage() {
                     <div className="flex flex-col pt-4 bg-novaNavy h-full w-full rounded-3xl">
                         <div className="w-full h-1/4 flex flex-col items-center justify-center">
                             <h1 className="text-novaCream font-light text-center text-3xl tracking-wide px-2">
-                                Resumes, cover letters, job boards, recruiters, assessments, and more... </h1>
+                                Resumes, cover letters, job boards, recruiters, assessments, and everything in between. </h1>
                             <h1 className="text-novaAurora font-semibold text-center text-3xl tracking-wide px-2 pt-4">Don't venture into the foggy job hunt alone.</h1>
 
                         </div>
@@ -35,9 +35,8 @@ export default function LoginPage() {
                                 <h2 className="pb-14 text-novaCream text-2xl font-light">Job hunting can feel hazy, unclear, demoralizing, and even a
                                     little scary. </h2>
                                 <h2 className="pb-14 text-4xl font-semibold text-novaAurora">But what if it didn't have to?</h2>
-                                <h2 className="pb-14 text-novaCream"> We want to provide some more clarity and brightness to your path and help make your
-                                    journey through the fog a little more visible. </h2>
-                                <h2 className="pt-10 text-novaCream">With nova, we can light the way forward together.</h2>
+                                <h2 className="pb-14 text-novaCream"> We’re here to bring clarity and brightness to your path, helping you navigate the fog with confidence. </h2>
+                                <h2 className="pt-10 text-novaCream">Together, we’ll light the way.</h2>
                                 <NovaLogo className="h-24 pt-5 mr-auto text-novaAurora"/>
                             </div>
                             <LoginIllustration className="flex justify-end items-end -mb-8 -mr-10 h-5/6"/>
