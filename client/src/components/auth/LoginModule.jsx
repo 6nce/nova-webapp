@@ -5,8 +5,8 @@ import {useAuth} from "../../context/AuthContext.jsx";
 import randomIndex from "../../data/FlavorText.jsx";
 
 
-export default function LoginModule() {
-    const [password, setPassword] = useState("");
+export default function LoginModule({ onSwitchToRegister }) {
+    const [secret, setSecret] = useState("");
     const [email, setEmail] = useState("");
     const {login} = useAuth()
 
@@ -18,18 +18,17 @@ export default function LoginModule() {
         const keys = Object.keys(testUsers);
         const randomTestUser = keys[randomIndex(keys)]
         setEmail(randomTestUser)
-        setPassword("password")
+        setSecret("password")
     }
 
-    const handleSubmit =(e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault();
-        const result = login(email, password);
+        const result = await login(email, secret);
 
         if(result.ok) {navigate("/home")
         } else {
             console.log(result.message)
         }
-
     }
 
 
@@ -47,10 +46,10 @@ export default function LoginModule() {
                 />
                 <input
                     name="password"
-                    value={password}
+                    value={secret}
                     type="password"
                     placeholder="Password"
-                    onChange={(e) => setPassword(e.target.value)}
+                    onChange={(e) => setSecret(e.target.value)}
                     className="input-base w-full  rounded-lg shadow w-full"
                 />
                 <div>
@@ -58,7 +57,7 @@ export default function LoginModule() {
                 </div>
                 <button className=" bg-novaAurora rounded-3xl py-2 font-semibold text-novaNavy">Sign In</button>
                 <div className="pt-1">
-                    <p className="flex justify-center text-xs font-medium text-novaCream">
+                    <p className="cursor-pointer flex justify-center text-xs font-medium text-novaCream" onClick={onSwitchToRegister}>
                         First time? Get started by clicking here
                     </p>
                 </div>
@@ -81,7 +80,7 @@ export default function LoginModule() {
                 </button>
             </div>
             <div>
-                <p className="text-novaAurora text-xs" onClick={setTestUser}> Click here to generate test login email</p>
+                <p className="cursor-pointer text-novaAurora text-xs" onClick={setTestUser}> Click here to generate test login email</p>
             </div>
         </div>
     );

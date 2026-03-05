@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
 
 export default function ProtectedRoute({ children }) {
-    const userEmail = localStorage.getItem('nova_userEmail');
+    const user = localStorage.getItem('nova_user');
 
-    if(!userEmail){
+    if(!user){
         return <Navigate to="/login" replace />;
     }
 

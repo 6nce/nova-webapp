@@ -2,6 +2,7 @@ import {useState} from "react";
 import NovaLogo from "../assets/logo.svg?react";
 import LoginIllustration from "../assets/loginIllustration.svg?react";
 import LoginModule from "../components/auth/LoginModule.jsx";
+import RegisterModule from "../components/auth/RegisterModule.jsx";
 
 
 export default function LoginPage() {
@@ -18,7 +19,7 @@ export default function LoginPage() {
                         <NovaLogo className="h-14"/>
                     </div>
                     <div className="flex justify-end">
-                    <LoginModule/>
+                    <LoginModule onSwitchToRegister={() => setActiveView("signup")} />
                     </div>
                 </div>
                 <div className="pl-16 flex flex-1 items-center justify-start w-full">
@@ -27,7 +28,6 @@ export default function LoginPage() {
                             <h1 className="text-novaCream font-light text-center text-3xl tracking-wide px-2">
                                 Resumes, cover letters, job boards, recruiters, assessments, and everything in between. </h1>
                             <h1 className="text-novaAurora font-semibold text-center text-3xl tracking-wide px-2 pt-4">Don't venture into the foggy job hunt alone.</h1>
-
                         </div>
                         <div className="flex flex-row justify-start items-end h-full w-full">
                             <div
@@ -44,7 +44,16 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-
+        </div>
+        ) :
+        activeView === "signup" ? (
+        <div className="flex w-full h-screen justify-center items-center">
+            <div className="flex flex-col pt-4 bg-novaNavy h-3/4 w-1/2 rounded-3xl items-center justify-center">
+                <div className="h-1/6 flex items-center justify-center w-full">
+                    <NovaLogo className="h-24 pt-5 text-novaCream justify-center items-center text px-10"/>
+                </div>
+                <RegisterModule onSwitchToLogin={() => setActiveView("login")}/>
+            </div>
         </div>
         ) : null
     )

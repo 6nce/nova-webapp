@@ -1,49 +1,41 @@
 import {createContext, useContext, useEffect, useMemo, useState} from "react";
-import { testUsers } from "../data/TempTestingData.jsx"
 
 const AuthContext = createContext(null);
 
-const STORAGE_KEY = "nova_userEmail";
-
 export function AuthProvider({ children }) {
-    const [userEmail, setUserEmail] = useState(null);
+    const [user, setUser] = useState(null);
 
     useEffect(()=> {
-        const savedEmail = localStorage.getItem(STORAGE_KEY);
-
-        if(!savedEmail) return;
-
-        if (testUsers[savedEmail]) {
-            setUserEmail(savedEmail)
-        } else {
-            localStorage.removeItem(STORAGE_KEY);
-            setUserEmail(null);
-        }
+        const savedUser = localStorage.getItem("nova_user");
+        if (savedUser) setUser(JSON.parse(savedUser));
     }, []);
 
-    const login = (email, password) => {
-        const user = testUsers[email];
-        if (!user) return {ok: false, message: "Email not found"};
-        if (user.password !== password) return {ok: false, message: "Incorrect Password"};
+    const login = async (email, secret) => {
+        const res = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({email, secret})
+        });
 
-        localStorage.setItem(STORAGE_KEY, email);
-        setUserEmail(email);
+        const data = await res.json();
+        if(!res.ok) return {ok:false, message:data.error}
 
-        return {ok: true}
+        localStorage.setItem("nova_token", data.token);
+        localStorage.setItem("nova_user", JSON.stringify(data.user));
+        setUser(data.user);
+        return { ok: true }
     };
 
     const logout = () => {
-        localStorage.removeItem(STORAGE_KEY);
-        setUserEmail(null);
+        localStorage.removeItem("nova_token");
+        localStorage.removeItem("nova_user");
+        setUser(null);
     }
 
-    const isAuthed = Boolean(userEmail);
-
-    const value = useMemo(()=> ({ userEmail, isAuthed, login, logout}), [userEmail, isAuthed]);
+    const value = useMemo(()=> ({ user, login, logout}), [user]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }
-
 
 export function useAuth() {
     const ctx = useContext(AuthContext);
