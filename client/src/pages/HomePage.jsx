@@ -42,7 +42,7 @@ export default function HomePage() {
     return (
         <div className="flex w-full h-screen">
             <aside>
-                <div className="w-96 h-[94vh] border-r-2 border-r-novaNavy/40 pl-7 pr-7">
+                <div className="w-80 h-[94vh] border-r-2 border-r-novaNavy/40 pl-7 pr-7">
                     <SideNav activeView={activeView} onNavigate={onNavigate} />
                 </div>
             </aside>

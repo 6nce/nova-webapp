@@ -18,18 +18,20 @@ export default function SideNav({ activeView, onNavigate }) {
 
     return(
         <div className="mt-10 pt-3 h-full w-full">
-            <div className="flex justify-center pb-6 px-4">
-                <NovaLogo className="w-full h-14 text-novaNavy"/>
+            <div className="flex justify-center flex-col items-center">
+                <div className="flex justify-center pb-6 px-4">
+                    <NovaLogo className="w-full h-10 text-novaNavy"/>
+                </div>
+                <button onClick={() => []} className="button-sideNav w-52 mb-10 items-center justify-center">
+                    Track New Application
+                </button>
             </div>
-            <button onClick={() => []} className="button-sideNav w-full mb-10">
-                Track New Application
-            </button>
             <ul>
                 <li onClick={() => onNavigate("applications")}>
                     <div
                         className={`flex pt-3 pb-3 pl-2 cursor-pointer rounded-md transition-all duration-300 ease-out ${activeView === "applications" ? "bg-black/5 translate-x-1" : "translate-x-0"}`}>
-                        <h3 className="pr-3 text-3xl">📑</h3>
-                        <p className={`flex items-center ${activeView === "applications" ? "font-extrabold text-2xl" : "font-bold text-xl"}`}>
+                        <h3 className="pr-3 text-2xl">📑</h3>
+                        <p className={`flex items-center ${activeView === "applications" ? "font-bold text-xl" : "font-semibold text-lg"}`}>
                             Applications
                         </p>
                     </div>
@@ -43,8 +45,8 @@ export default function SideNav({ activeView, onNavigate }) {
                 <li onClick={() => onNavigate("opportunities")}>
                     <div
                         className={`flex pt-3 pb-3 pl-2 cursor-pointer rounded-md transition-all duration-300 ease-out ${activeView === "opportunities" ? "bg-black/5 translate-x-1" : "translate-x-0"}`}>
-                        <h3 className="pr-3 text-3xl">💼</h3>
-                        <p className={`flex items-center ${activeView === "opportunities" ? "font-extrabold text-2xl" : "font-bold text-xl"}`}>
+                        <h3 className="pr-3 text-2xl">💼</h3>
+                        <p className={`flex items-center ${activeView === "opportunities" ? "font-bold text-xl" : "font-semibold text-lg"}`}>
                             Opportunities
                         </p>
                     </div>
@@ -52,16 +54,16 @@ export default function SideNav({ activeView, onNavigate }) {
                 <li onClick={() => onNavigate("learnandgrow")}>
                     <div
                         className={`flex pt-3 pb-3 pl-2 cursor-pointer rounded-md transition-all duration-300 ease-out ${activeView === "learnandgrow" ? "bg-black/5 translate-x-1" : "translate-x-0"}`}>
-                        <h3 className="pr-3 text-3xl">⬆️</h3>
-                        <p className={`flex items-center ${activeView === "learnandgrow" ? "font-extrabold text-2xl" : "font-bold text-xl"}`}>
+                        <h3 className="pr-3 text-2xl">⬆️</h3>
+                        <p className={`flex items-center ${activeView === "learnandgrow" ? "font-bold text-xl" : "font-semibold text-lg"}`}>
                             Learn & Grow</p>
                     </div>
                 </li>
                 <li onClick={() => onNavigate("profile")}>
                     <div
                         className={`flex pt-3 pb-3 pl-2 cursor-pointer rounded-md transition-all duration-300 ease-out ${activeView === "profile" ? "bg-black/5 translate-x-1" : "translate-x-0"}`}>
-                        <h3 className="pr-3 text-3xl">👤</h3>
-                        <p className={`flex items-center ${activeView === "profile" ? "font-extrabold text-2xl" : "font-bold text-xl"}`}>
+                        <h3 className="pr-3 text-2xl">👤</h3>
+                        <p className={`flex items-center ${activeView === "profile" ? "font-bold text-xl" : "font-semibold text-lg"}`}>
                             Profile
                         </p>
                     </div>
@@ -69,15 +71,15 @@ export default function SideNav({ activeView, onNavigate }) {
                 <li onClick={() => onNavigate("novaoptimizer")}>
                     <div
                         className={`flex pt-3 pb-3 pl-2 cursor-pointer rounded-md transition-all duration-300 ease-out ${activeView === "novaoptimizer" ? "bg-black/5 translate-x-1" : "translate-x-0"}`}>
-                        <h3 className="pr-3 text-3xl">💫</h3>
-                        <p className={`flex items-center ${activeView === "novaoptimizer" ? "font-extrabold text-2xl" : "font-bold text-xl"}`}>
+                        <h3 className="pr-3 text-2xl">💫</h3>
+                        <p className={`flex items-center ${activeView === "novaoptimizer" ? "font-bold text-xl" : "font-semibold text-lg"}`}>
                             Nova Optimizer
                         </p>
                     </div>
                 </li>
             </ul>
             <div className="flex justify-center items-end pb-20 h-2/4">
-                <button onClick={logoutHandler} className="flex justify-center items-center button-sideNav h-10 w-4/12 mb-10">
+                <button onClick={logoutHandler} className="flex justify-center items-center button-sideNav h-10 w-1/2 mb-10">
                     Sign Out
                 </button>
             </div>

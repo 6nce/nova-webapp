@@ -8,9 +8,8 @@ import {testUsers} from "../data/TempTestingData.jsx";
 export default function LandingPage({quoteIndex}) {
     const [mounted, setMounted] = useState(false);
 
-    const { userEmail } = useAuth();
-    const activeUser = userEmail ? testUsers[userEmail] : null;
-    const avatarURL = activeUser?.avatarPath ?? null;
+    const { user } = useAuth();
+    console.log(user)
 
     useEffect(() => {
         setMounted(true);
@@ -50,7 +49,7 @@ export default function LandingPage({quoteIndex}) {
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
                             ].join(" ")}
                         >
-                            {activeUser?.firstName ?? "Loading..."}
+                            {user?.firstName ?? "Loading..."}
                         </p>
                     </div>
                     <div className="w-full h-1/3">
@@ -61,24 +60,24 @@ export default function LandingPage({quoteIndex}) {
                                 mounted ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2"
                             ].join(" ")}
                         >
-                            ( {activeUser?.testName ?? "Loading..."} )
+                            ( {user?.username ?? "Loading..."} )
                         </p>
                     </div>
                 </div>
-                <div className="flex items-center justify-end w-1/2 h-full">
-                    {avatarURL && (
-                        <img
-                            src={avatarURL}
-                            alt="Profile"
-                            className={[
-                                "aspect-square h-3/5 rounded-full object-cover border-8 border-novaAurora",
-                                "transition-all duration-700 ease-out delay-150 relative",
-                                mounted ? "opacity-100 scale-100" : "opacity-0 scale-95"
-                            ].join(" ")}
-                        />
-                    )}
-
-                </div>
+                {/*Avatar Implementation Legacy Code*/}
+                {/*<div className="flex items-center justify-end w-1/2 h-full">*/}
+                {/*    {avatarURL && (*/}
+                {/*        <img*/}
+                {/*            src={avatarURL}*/}
+                {/*            alt="Profile"*/}
+                {/*            className={[*/}
+                {/*                "aspect-square h-3/5 rounded-full object-cover border-8 border-novaAurora",*/}
+                {/*                "transition-all duration-700 ease-out delay-150 relative",*/}
+                {/*                mounted ? "opacity-100 scale-100" : "opacity-0 scale-95"*/}
+                {/*            ].join(" ")}*/}
+                {/*        />*/}
+                {/*    )}*/}
+                {/*</div>*/}
             </div>
             <div className="flex w-full h-36 justify-center items-center w-full pb-20 px-10">
                 <p
