@@ -2,18 +2,16 @@ import express from "express"
 import "dotenv/config"
 import { pool } from "./db/pool.js";
 import authRoutes from "./routes/auth.routes.js";
-import bcrypt from "bcrypt";
-import error from "jsonwebtoken/lib/JsonWebTokenError.js";
+import jobHistoryRoutes from "./routes/jobHistory.routes.js";
 const app = express();
 
 const fieldRegex = /^[a-zA-Z0-9_]+$/;
 
 app.use(express.json());
 app.use("/auth", authRoutes);
+app.use("/job-history", jobHistoryRoutes);
 
-app.get("/health", (req, res) => {
-    res.json({ok:true});
-})
+//Status Testing
 app.get("/health/db", async (req, res) => {
     try {
         const result = await pool.query("SELECT NOW() as now");
@@ -45,13 +43,6 @@ app.get("/db-whoami", async (req, res) => {
     }
 });
 
-
-app.get("/health/env", (req, res) => {
-    res.json({
-        ok:true,
-        DATABASE_URL: Boolean(process.env.DATABASE_URL),
-    })
-})
 
 
 
