@@ -64,7 +64,4 @@ export default function ApplicationsPage() {
         setView("overview")
     }
 
-    return (
-        <AddApplic
-    )
 }

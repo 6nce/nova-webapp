@@ -3,7 +3,6 @@ import {requireAuth} from "../middleware/auth.middleware.js";
 import {pool} from "../db/pool.js";
 import {z} from "zod";
 
-
 //Setup
 const router = express.Router();
 const fieldRegex = /^[a-zA-Z0-9_]+$/;
@@ -18,7 +17,7 @@ const jobHistorySchema = z.object({
     description: z.string().max(256).optional(),
 });
 
-//Routing
+//Routing | POST
 router.post("/", requireAuth, async (req, res) => {
     const parsed = jobHistorySchema.safeParse(req.body);
     if (!parsed.success) {
@@ -39,7 +38,16 @@ router.post("/", requireAuth, async (req, res) => {
     } catch(err){
         return res.status(500).json({ok:false, error: 'Internal Server Error'});
     }
-
 })
+
+//ROUTING | GET
+router.get("/", requireAuth, async (req, res) => {
+    try{
+       const result = await pool.query("SELECT * FROM job_history WHERE user_id = $1", [req.userId]);
+       return res.json({ok:true, jobs:result.rows});
+    } catch (error) {
+        return res.status(500).json({ok:false, error: "Internal Server Error"});
+    }
+});
 
 export default router;
