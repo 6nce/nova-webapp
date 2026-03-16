@@ -3,6 +3,8 @@ import "dotenv/config"
 import { pool } from "./db/pool.js";
 import authRoutes from "./routes/auth.routes.js";
 import jobHistoryRoutes from "./routes/jobHistory.routes.js";
+import careerInfoRoutes from "./routes/careerInfo.routes.js";
+import jobApplicationsRoutes from "./routes/jobApplications.routes.js";
 const app = express();
 
 const fieldRegex = /^[a-zA-Z0-9_]+$/;
@@ -10,6 +12,8 @@ const fieldRegex = /^[a-zA-Z0-9_]+$/;
 app.use(express.json());
 app.use("/auth", authRoutes);
 app.use("/job-history", jobHistoryRoutes);
+app.use("/career-info", careerInfoRoutes);
+app.use("/job-applications", jobApplicationsRoutes);
 
 //Status Testing
 app.get("/health/db", async (req, res) => {

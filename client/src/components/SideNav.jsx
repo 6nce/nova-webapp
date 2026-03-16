@@ -12,7 +12,6 @@ export default function SideNav({ activeView, onNavigate }) {
     const logoutHandler = () => {
         logout()
         navigate("/login")
-
     }
 
 

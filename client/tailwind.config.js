@@ -9,6 +9,7 @@ export default {
         novaSlate: "#8A94A6",
         novaCream: "#F3EFE8",
         novaAurora: "#5FD3A6",
+        novaNavyShadow: "#121921"
       },
       fontFamily: {
         asap: ["Asap","system-ui", "sans-serif"],

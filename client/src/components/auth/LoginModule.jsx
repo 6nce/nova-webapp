@@ -1,8 +1,6 @@
 import {useState} from "react";
-import {testUsers} from "../../data/TempTestingData.jsx";
 import { useNavigate } from "react-router-dom";
 import {useAuth} from "../../context/AuthContext.jsx";
-import randomIndex from "../../data/FlavorText.jsx";
 
 
 export default function LoginModule({ onSwitchToRegister }) {
@@ -10,14 +8,11 @@ export default function LoginModule({ onSwitchToRegister }) {
     const [email, setEmail] = useState("");
     const {login} = useAuth()
 
-
     const navigate = useNavigate();
 
 
     const setTestUser = () => {
-        const keys = Object.keys(testUsers);
-        const randomTestUser = keys[randomIndex(keys)]
-        setEmail(randomTestUser)
+        setEmail('user@test.com')
         setSecret("password")
     }
 

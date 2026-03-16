@@ -3,6 +3,7 @@ import SideNav from "../components/SideNav";
 import ApplicationsPage from "./ApplicationsPage.jsx";
 import randomIndex, {motivationalHeaderQuotes} from "../data/FlavorText.jsx";
 import LandingPage from "./LandingPage.jsx";
+import ProfilePage from "./ProfilePage.jsx";
 
 
 export default function HomePage() {
@@ -53,9 +54,9 @@ export default function HomePage() {
                         {activeView !== "profile" && motivationalHeaderQuotes[activeQuoteIndex]}
                     </h2>
                 </div>
-                <div className="flex items-center justify-center h-5/6 bg-novaNavy mt-5 rounded-3xl ">
+                <div className="flex h-5/6 mt-5 rounded-3xl ">
                     {activeView === "applications" && <ApplicationsPage/>}
-                    {activeView === "profile" && <LandingPage quoteIndex={activeQuoteIndex} />}
+                    {activeView === "profile" && <ProfilePage />}
                 </div>
             </main>
         </div>
