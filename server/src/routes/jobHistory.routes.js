@@ -47,7 +47,7 @@ router.get("/", requireAuth, async (req, res) => {
        const result = await pool.query("SELECT * FROM job_history WHERE user_id = $1", [req.userId]);
        return res.json({ok:true, jobs:result.rows});
     } catch (error) {
-        return res.status(500).json({ok:false, error: err});
+        return res.status(500).json({ok:false, error: error.message});
     }
 });
 

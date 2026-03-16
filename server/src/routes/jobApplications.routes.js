@@ -29,7 +29,6 @@ const jobApplicationSchema = z.object({
 //Routing | POST
 router.post("/", requireAuth, async (req, res) => {
     const parsed = jobApplicationSchema.safeParse(req.body);
-    console.log("Test")
     if(!parsed.success) {
         console.log(parsed);
         return res.status(400).json({ok:false, error: "Invalid Input"});
@@ -43,9 +42,6 @@ router.post("/", requireAuth, async (req, res) => {
     } = parsed.data;
 
     const userId = req.userId;
-
-    console.log(userId);
-    console.log(parsed);
 
     try {
         const result = await pool.query(

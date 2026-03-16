@@ -30,7 +30,6 @@ router.post("/", requireAuth, async (req, res) => {
              RETURNING *
             `,
             [userId, degree, linkedin_url, portfolio_url, skillsArray]);
-        console.log(err.message);
         return res.status(201).json({ok: true, userCareerInfo: result.rows[0]});
     }catch (error) {
             console.log(error);
